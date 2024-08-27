@@ -5,6 +5,7 @@ const Navbar = () => {
     const link = <>
     <li><Link to='/'>Home</Link></li>
     <li><Link to='/menu'>Menu</Link></li>
+    <li><Link to='/order'>Order Food</Link></li>
     </>
     return (
         <div className="navbar fixed z-10 bg-opacity-10 max-w-7xl  mx-auto bg-black">
@@ -26,7 +27,7 @@ const Navbar = () => {
                     </div>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-white rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                        className="menu menu-sm dropdown-content  bg-white z-[1] mt-3 w-52 p-2 shadow">
                         {link}
                     </ul>
                 </div>
