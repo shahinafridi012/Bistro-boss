@@ -2,12 +2,14 @@ import image from '../../assets/others/authentication.gif';
 import logo from '../../assets/logo.png';
 import bg_image from '../../assets/others/authentication.png';
 import { LoadCanvasTemplate, loadCaptchaEnginge, validateCaptcha } from 'react-simple-captcha';
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { AuthContext } from '../../providers/AuthProvider';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
     const captchaRef = useRef(null);
     const [disabled, setDisabled] = useState(true);
-
+    const { signIn } = useContext(AuthContext);
     useEffect(() => {
         loadCaptchaEnginge(6);
     }, []);
@@ -17,6 +19,11 @@ const Login = () => {
         const email = e.target.email.value;
         const password = e.target.password.value;
         console.log(email, password);
+        signIn(email, password)
+            .then(res => {
+                const user = res.user;
+                console.log(user)
+            })
     };
 
     const handleCaptcha = () => {
@@ -149,12 +156,17 @@ const Login = () => {
 
                             <div className="flex items-center justify-between mt-4">
                                 <span className="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
-                                <button
-                                    disabled={disabled}
-                                    className="text-xs text-gray-500 uppercase dark:text-gray-400 hover:underline"
-                                >
-                                    or sign up
-                                </button>
+                                <Link to='/signup'>
+
+                                    <button
+
+                                        className="text-xs text-gray-500 uppercase dark:text-gray-400 hover:underline"
+                                    >
+                                        or sign up
+                                    </button>
+                                </Link>
+
+
                                 <span className="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
                             </div>
                         </div>
